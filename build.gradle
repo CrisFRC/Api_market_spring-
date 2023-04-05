@@ -18,6 +18,13 @@ dependencies {
 
 	runtimeOnly  'org.postgresql:postgresql' //solo se necesita en el compilador
 
+	//Libreria Lombok
+	compileOnly'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+    compileOnly 'org.mapstruct:mapstruct:1.4.0.Final'
+    annotationProcessor 'org.mapstruct:mapstruct processor:1.4.0.Final'
+
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
