@@ -3,6 +3,7 @@ package com.platzi.market.persistence.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,4 +20,8 @@ public class Category {
 
     @Column(name="estado")
     private boolean state;
+
+    //ADD RELATIONSHIPS BETWEEN TABLES
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
 }

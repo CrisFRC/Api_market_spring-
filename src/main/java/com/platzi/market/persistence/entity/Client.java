@@ -2,10 +2,8 @@ package com.platzi.market.persistence.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -30,4 +28,7 @@ public class Client {
     @Column(name="correo_electronico")
     private String email;
 
+    //ADD RELATIONSHIPS BETWEEN TABLES
+    @OneToMany(mappedBy = "client")
+    private List<Purchase> purchases;
 }

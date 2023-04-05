@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -30,5 +31,13 @@ public class Purchase {
 
     @Column(name="estado")
     private String state;
+
+    //ADD RELATIONSHIPS BETWEEN TABLES
+    @ManyToOne
+    @JoinColumn(name="id_cliente", insertable = false, updatable = false)
+    private Client client;
+
+    @OneToMany(mappedBy = "purchase")
+    private List<ProductPurchase> products;
 
 }

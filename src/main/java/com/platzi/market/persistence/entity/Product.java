@@ -33,4 +33,10 @@ public class Product {
     @Column(name="estado")
     private Boolean state;
 
+    //ADD RELATIONSHIPS BETWEEN TABLES
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+    private Category category;
+
+
 }
