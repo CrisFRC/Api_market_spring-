@@ -31,6 +31,6 @@ public class Product {
     private Integer stockNumber;
 
     @Column(name="estado")
-    private boolean state;
+    private Boolean state;
 
 }
