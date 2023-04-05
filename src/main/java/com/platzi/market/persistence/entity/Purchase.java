@@ -30,5 +30,5 @@ public class Purchase {
 
     @Column(name="estado")
     private String state;
-    
+
 }
