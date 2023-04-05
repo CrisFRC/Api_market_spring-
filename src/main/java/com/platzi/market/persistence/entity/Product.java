@@ -3,6 +3,7 @@ package com.platzi.market.persistence.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -24,7 +25,7 @@ public class Product {
     private String barCode;
 
     @Column(name="precio_venta")
-    private Double price;
+    private BigDecimal price;
 
     @Column(name="cantidad_stock")
     private Integer stockNumber;
