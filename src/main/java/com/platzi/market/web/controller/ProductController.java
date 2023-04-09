@@ -36,7 +36,7 @@ public class ProductController {
         return productService.save(product);
     }
     @DeleteMapping("/delete/{productId}")
-    public boolean delete(int productId){
+    public boolean delete(@PathVariable("productId") int productId){
         try {
             productService.delete(productId);
             return true;
