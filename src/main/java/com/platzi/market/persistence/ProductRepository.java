@@ -5,6 +5,7 @@ import com.platzi.market.domain.repository.DomainProductRepository;
 import com.platzi.market.persistence.crud.ProductCrudRepository;
 import com.platzi.market.persistence.entity.Product;
 import com.platzi.market.persistence.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +13,9 @@ import java.util.Optional;
 
 @Repository // esta anotacion indica que esta es la clase que trabaja directamente con la base de datos
 public class ProductRepository implements DomainProductRepository {
+    @Autowired //anotación que permite a Spring inicializar e inyectar las dependencias
     private ProductCrudRepository productCrudRepository;
+    @Autowired
     private ProductMapper mapper;
 
     @Override
@@ -28,8 +31,8 @@ public class ProductRepository implements DomainProductRepository {
 
     @Override
     public Optional<List<DProduct>> getScarceProduct(int quantity) {
-        Optional<List<Product>> products = productCrudRepository.findByStockNumberLessThanAndState(quantity,true);
-        return products.map(productsData -> mapper.toProducts(productsData) );
+        Optional<List<Product>> products = productCrudRepository.findByStockNumberLessThanAndState(quantity, true);
+        return products.map(productsData -> mapper.toProducts(productsData));
     }
 
     @Override
@@ -41,11 +44,6 @@ public class ProductRepository implements DomainProductRepository {
     public DProduct save(DProduct productDom) {
         Product productPer = mapper.toProductPer(productDom); //de una variable de dominio se traduce a una variable de persistencia
         return mapper.toProduct(productCrudRepository.save(productPer));
-    }
-
-
-    public Product save(Product product){ //dado por los repositorios de spring data
-        return  ;
     }
 
     @Override
