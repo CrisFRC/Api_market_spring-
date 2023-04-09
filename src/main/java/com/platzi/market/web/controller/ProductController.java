@@ -20,22 +20,22 @@ public class ProductController {
         return productService.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<DProduct> getProduct(int productId){
+    public Optional<DProduct> getProduct(@PathVariable("id") int productId){
         return productService.getProduct(productId);
     }
     @GetMapping("/category/{categoryId}")
-    public Optional<List<DProduct>> getByCategory(int categoryId){
+    public Optional<List<DProduct>> getByCategory(@PathVariable("categoryId") int categoryId){
         return productService.getByCategory(categoryId);
     }
-    @GetMapping("/product/scarce/{quantity}")
-    public Optional<List<DProduct>> getScarceProduct(int quantity){
+    @GetMapping("/scarce/{quantity}")
+    public Optional<List<DProduct>> getScarceProduct(@PathVariable("quantity") int quantity){
         return productService.getScarceProduct(quantity);
     }
-    @PostMapping()
-    public DProduct save(DProduct product){
+    @PostMapping("/save")
+    public DProduct save(@RequestBody  DProduct product){
         return productService.save(product);
     }
-    @DeleteMapping("/{productId}")
+    @DeleteMapping("/delete/{productId}")
     public boolean delete(int productId){
         try {
             productService.delete(productId);
