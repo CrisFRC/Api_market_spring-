@@ -23,7 +23,7 @@ public interface CategoryMapper {
     //conversión inversa de Category(Domain) a Category(persistence)
     @InheritInverseConfiguration
     @Mapping(target = "products", ignore = true)
-    Category toCategory(DCategory category);
+    Category toCategoryPer(DCategory category);
 
 
 }

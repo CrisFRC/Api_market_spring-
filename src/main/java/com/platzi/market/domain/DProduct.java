@@ -9,14 +9,14 @@ public class DProduct {
 
     //Columns
     private int productId;
-    private String name;
+    private String nameD;
     private int categoryId;
-    private BigDecimal price;
+    private BigDecimal priceD;
     private int stock;
     private boolean active;
 
     //relationship
-    private DCategory category;
+    private DCategory categoryD;
 
 
 }
