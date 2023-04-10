@@ -14,6 +14,8 @@ public class DPurchase {
     private String payMethod;
     private String commentD;
     private String stateD;
+
+    //Relationship
     private List<DPurchaseItem> item;
 
 
