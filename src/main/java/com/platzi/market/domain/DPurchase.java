@@ -16,7 +16,7 @@ public class DPurchase {
     private String stateD;
 
     //Relationship
-    private List<DPurchaseItem> item;
+    private List<DPurchaseItem> items;
 
 
 }

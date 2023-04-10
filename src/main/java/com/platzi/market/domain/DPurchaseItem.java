@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 @Data
 public class DPurchaseItem {
     private int productId;
-    private int quantity;
+    private int quantityD;
     private BigDecimal totalD;
     private boolean active;
 }

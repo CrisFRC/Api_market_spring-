@@ -24,6 +24,7 @@ public class ProductPurchase {
 
     //ADD RELATIONSHIPS BETWEEN TABLES
     @ManyToOne
+    @MapsId("idPurchase")
     @JoinColumn(name= "id_compra", insertable = false,updatable = false)
     private Purchase purchase;
 
