@@ -4,6 +4,8 @@ import com.platzi.market.domain.DProduct;
 import com.platzi.market.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,33 +18,35 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
-    public List<DProduct> getAll(){
-        return productService.getAll();
+    public ResponseEntity<List<DProduct>> getAll(){
+        return new ResponseEntity<>( productService.getAll(), HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public Optional<DProduct> getProduct(@PathVariable("id") int productId){
-        return productService.getProduct(productId);
+    public ResponseEntity<DProduct> getProduct(@PathVariable("id") int productId){
+        return productService.getProduct(productId)
+                .map(dProduct -> new ResponseEntity<>(dProduct,HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     @GetMapping("/category/{categoryId}")
-    public Optional<List<DProduct>> getByCategory(@PathVariable("categoryId") int categoryId){
-        return productService.getByCategory(categoryId);
+    public ResponseEntity<List<DProduct>> getByCategory(@PathVariable("categoryId") int categoryId){
+        return productService.getByCategory(categoryId)
+                .map(dProducts -> new ResponseEntity<>(dProducts,HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     @GetMapping("/scarce/{quantity}")
-    public Optional<List<DProduct>> getScarceProduct(@PathVariable("quantity") int quantity){
-        return productService.getScarceProduct(quantity);
+    public ResponseEntity<List<DProduct>> getScarceProduct(@PathVariable("quantity") int quantity){
+        return productService.getScarceProduct(quantity)
+                .map(dProducts -> new ResponseEntity<>(dProducts,HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     @PostMapping("/save")
-    public DProduct save(@RequestBody  DProduct product){
-        return productService.save(product);
+    public ResponseEntity<DProduct> save(@RequestBody  DProduct product){
+        return new ResponseEntity<>(productService.save(product),HttpStatus.CREATED);
     }
     @DeleteMapping("/delete/{productId}")
-    public boolean delete(@PathVariable("productId") int productId){
-        try {
-            productService.delete(productId);
-            return true;
-        } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
-            return false;
-        }
+    public ResponseEntity delete(@PathVariable("productId") int productId){
+        return productService.delete(productId)?
+                new ResponseEntity(HttpStatus.OK):
+                new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 }

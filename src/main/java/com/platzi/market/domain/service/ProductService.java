@@ -33,12 +33,18 @@ public class ProductService {
 
     public boolean delete(int productId){
         try {
-            domainProductRepository.delete(productId);
-            return true;
+            if(domainProductRepository.getProduct(productId).isPresent()) {
+                domainProductRepository.delete(productId);
+                return true;
+            }
+            else{
+                return false;
+            }
         } catch (EmptyResultDataAccessException e) {
             e.printStackTrace();
             return false;
         }
+
     }
 
 }
