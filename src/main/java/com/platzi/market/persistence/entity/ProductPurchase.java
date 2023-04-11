@@ -12,12 +12,9 @@ public class ProductPurchase {
 
     @EmbeddedId //it's use when the primary key is composed
     private ProductPurchasePK id;
-
     @Column(name="cantidad")
     private Integer quantity;
-
     private BigDecimal total;
-
     @Column(name = "estado")
     private Boolean state;
 
