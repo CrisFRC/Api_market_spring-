@@ -24,9 +24,9 @@ public class PurchaseRepository  implements DomainPurchaseRepository {
     }
 
     @Override
-    public Optional<List<DPurchase>> getByClient(String clientId) {
+    public Optional<List<DPurchase>> getByClientId(String clientId) {
         return purchaseCrudRepository.findByClientId(clientId)
-                .map(purchases -> mapper.toPurchases(purchases));
+                    .map(purchases -> mapper.toPurchases(purchases));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.platzi.market.web.controller;
 
+
 import com.platzi.market.domain.DProduct;
 import com.platzi.market.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +31,14 @@ public class ProductController {
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<List<DProduct>> getByCategory(@PathVariable("categoryId") int categoryId){
         return productService.getByCategory(categoryId)
+                .filter(dProducts -> !dProducts.isEmpty())
                 .map(dProducts -> new ResponseEntity<>(dProducts,HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     @GetMapping("/scarce/{quantity}")
     public ResponseEntity<List<DProduct>> getScarceProduct(@PathVariable("quantity") int quantity){
         return productService.getScarceProduct(quantity)
+                .filter(dProducts -> !dProducts.isEmpty())
                 .map(dProducts -> new ResponseEntity<>(dProducts,HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

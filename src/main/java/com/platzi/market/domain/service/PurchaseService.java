@@ -2,7 +2,6 @@ package com.platzi.market.domain.service;
 
 import com.platzi.market.domain.DPurchase;
 import com.platzi.market.domain.repository.DomainPurchaseRepository;
-import com.platzi.market.persistence.entity.Purchase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,8 @@ public class PurchaseService {
         return domainPurchaseRepository.getAll();
     }
 
-    public Optional<List<DPurchase>> getByClient(String clientId) {
-        return domainPurchaseRepository.getByClient(clientId);
+    public Optional<List<DPurchase>> getByClientId(String clientId) {
+        return domainPurchaseRepository.getByClientId(clientId);
     }
 
     public DPurchase save(DPurchase dPurchase) {

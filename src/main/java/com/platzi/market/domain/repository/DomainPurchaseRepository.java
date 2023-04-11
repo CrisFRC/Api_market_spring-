@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface DomainPurchaseRepository {
 
     List<DPurchase> getAll();
-    Optional<List<DPurchase>> getByClient(String clientId);
+    Optional<List<DPurchase>> getByClientId(String clientId);
     DPurchase save(DPurchase dPurchase);
 }
